@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use App\Models\Artiste;
 use App\Models\Categorie;
 use App\Models\Product;
@@ -25,11 +26,6 @@ class DatabaseSeeder extends Seeder
          ]);
 
         Categorie::factory()
-            ->state(new Sequence(
-                fn ($sequence) => [
-                    'user_id'       => User::all()->random()
-                ]
-            ))
             ->count(50)
             ->create();
 
@@ -51,6 +47,5 @@ class DatabaseSeeder extends Seeder
             ))
             ->count(300)
             ->create();
-
     }
 }
