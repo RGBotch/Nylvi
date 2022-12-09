@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Panier;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class PanierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,19 +15,20 @@ class ProductController extends Controller
     public function index()
     {
         return response()->json([
-            Product::all()->toArray()
+            Panier::with('products')->get()->toArray()
         ]);
     }
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Panier  $panier
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Product $product)
+    public function show(Panier $panier)
     {
+        $panier->products;
         return response()->json([
-            $product->toArray()
+            $panier->toArray()
         ]);
     }
     /**
@@ -45,24 +46,24 @@ class ProductController extends Controller
             'size' => 'required|integer'
         ]);
 
-        $product = Product::create([
+        $panier = Panier::create([
             "name" => $request->name,
             "date" => $request->date,
             "price" => $request->price,
             "size" => $request->size
         ]);
 
-        return response()->json($product, 201);
+        return response()->json($panier, 201);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Panier  $panier
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Panier $panier)
     {
         $this->validate($request, [
             'name' => 'required|max:100',
@@ -71,7 +72,7 @@ class ProductController extends Controller
             'size' => 'required|integer'
         ]);
 
-        $product->update([
+        $panier->update([
             "name" => $request->name,
             "date" => $request->date,
             "price" => $request->price,
@@ -84,12 +85,12 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Product  $panier
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Product $product)
+    public function destroy(Panier $panier)
     {
-        $product->delete();
+        $panier->delete();
 
         return response()->json();
     }

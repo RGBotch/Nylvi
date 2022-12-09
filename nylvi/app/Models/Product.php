@@ -9,14 +9,19 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function Artiste()
+    public function artiste()
     {
-        return $this->belongsTo(Artiste::class);
+        return $this->hasOne(Artiste::class);
     }
 
-    public function Categorie()
+    public function categorie()
     {
-        return $this->hasMany(Categorie::class);
+        return $this->hasOne(Categorie::class);
+    }
+
+    public function panier()
+    {
+        return $this->belongsToMany(Panier::class);
     }
     /**
      * The attributes that are mass assignable.
@@ -28,6 +33,7 @@ class Product extends Model
         'date',
         'price',
         'size',
+        'cover',
         'categorie_id',
         'artiste_id'
     ];

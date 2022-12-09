@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Artiste extends Model
+class Panier extends Model
 {
     use HasFactory;
 
-    public function product()
+    public function products()
     {
-        return $this->belongsTo(Product::class);
-    }
-
-    public function categorie()
-    {
-        return $this->hasOne(Categorie::class);
+        return $this->belongsToMany(Product::class);
     }
 
     /**
@@ -25,8 +20,6 @@ class Artiste extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'date',
-        'categorie_id'
+        'user_id',
     ];
 }

@@ -79,11 +79,9 @@ class CategorieController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Categorie  $categorie
-     * @param  \App\Models\Artiste  $artiste
-     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Categorie $categorie,Artiste $artiste, Product $product)
+    public function destroy(Categorie $categorie)
     {
         $categorie->delete();
 

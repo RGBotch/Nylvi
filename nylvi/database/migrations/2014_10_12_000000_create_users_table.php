@@ -50,6 +50,7 @@ return new class extends Migration
             $table->timestamp('date')->nullable();
             $table->integer('price');
             $table->integer('size');
+            $table->string('cover')->nullable();
             $table->unsignedBigInteger('categorie_id')->nullable();
             $table->foreign('categorie_id')
                 ->references('id')
@@ -72,8 +73,12 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create('paniers_products', function (Blueprint $table) {
+        Schema::create('panier_product', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('panier_id')->nullable();
+            $table->foreign('panier_id')
+                ->references('id')
+                ->on('paniers');
             $table->unsignedBigInteger('product_id')->nullable();
             $table->foreign('product_id')
                 ->references('id')
