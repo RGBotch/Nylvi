@@ -32,9 +32,10 @@ class Product extends Model
         'name',
         'date',
         'price',
-        'size',
         'cover',
         'categorie_id',
-        'artiste_id'
+        'artiste_id',
+        'taille_id',
+        'collection_id'
     ];
 }

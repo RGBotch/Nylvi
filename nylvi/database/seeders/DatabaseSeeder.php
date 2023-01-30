@@ -10,6 +10,7 @@ use App\Models\Categorie;
 use App\Models\Panier;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Taille;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -25,10 +26,16 @@ class DatabaseSeeder extends Seeder
          User::factory()->create([
              'name' => 'Test User',
              'email' => 'test@example.com',
+             'password' => 'apFormation31',
+             'ville' => 'Toulouse'
          ]);
 
         Categorie::factory()
             ->count(50)
+            ->create();
+
+        Taille::factory()
+            ->count(10)
             ->create();
 
         Artiste::factory()
@@ -44,7 +51,8 @@ class DatabaseSeeder extends Seeder
             ->state(new Sequence(
                 fn ($sequence) => [
                     'artiste_id'       => Artiste::all()->random(),
-                    'categorie_id'    => Categorie::all()->random()
+                    'categorie_id'    => Categorie::all()->random(),
+                    'taille_id' => Taille::all()->random()
                 ]
             ))
             ->count(300)

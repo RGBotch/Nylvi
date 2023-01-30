@@ -15,6 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         return response()->json([
+//            Product::query()->paginate(35)->toArray()
             Product::all()->toArray()
         ]);
     }

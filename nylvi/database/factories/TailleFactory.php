@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Taille>
  */
-class ProductFactory extends Factory
+class TailleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,10 +19,6 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->name(),
             'date' => fake()->date(),
-            'price' => fake()->randomDigitNotNull(),
-            'cover' => 'https://picsum.photos/200?nocache='.fake()->randomNumber(6),
         ];
     }
-
 }
-

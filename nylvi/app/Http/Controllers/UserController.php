@@ -17,12 +17,14 @@ class UserController extends \Illuminate\Routing\Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'ville' =>'required|max:100',
             'name' => 'required|max:100',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8'
         ]);
 
         $user = User::create([
+            'ville' =>$request->ville,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password)
