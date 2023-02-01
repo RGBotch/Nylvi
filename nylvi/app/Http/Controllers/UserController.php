@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends \Illuminate\Routing\Controller
@@ -12,6 +13,19 @@ class UserController extends \Illuminate\Routing\Controller
         $users = User::all();
 
         return response()->json($users);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show(User $user)
+    {
+        return response()->json([
+            $user->toArray()
+        ]);
     }
 
     public function store(Request $request)

@@ -34,17 +34,26 @@ class DatabaseSeeder extends Seeder
             ->count(50)
             ->create();
 
-        Taille::factory()
-            ->count(10)
-            ->create();
+        $sizes = array("7-inch", "10-inch", "12-inch");
+        $names = [];
+        foreach ($sizes as $size){
+            $names[] =[
+                'name' => $size
+            ];
+        }
+        DB::table('tailles')->insert($names);
+
+//        Taille::factory()
+//            ->create(
+//            );
 
         Artiste::factory()
             ->state(new Sequence(
                 fn ($sequence) => [
-                    'categorie_id'       => User::all()->random()
+                    'categorie_id'       => Categorie::all()->random()
                 ]
             ))
-            ->count(50)
+            ->count(30)
             ->create();
 
         Product::factory()

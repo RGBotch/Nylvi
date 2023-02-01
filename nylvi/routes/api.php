@@ -8,6 +8,7 @@ use App\Http\Controllers\PanierController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArtisteController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\TailleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\CategorieController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -36,6 +37,12 @@ Route::get('/users/{user:id}', [UserController::class, 'show']);
 Route::post('/users', [UserController::class, 'store']);
 Route::put('/users/{user:id}', [UserController::class, 'update']);
 Route::delete('/users/{user:id}', [UserController::class, 'destroy']);
+
+Route::get('/tailles', [TailleController::class, 'index']);
+Route::get('/tailles/{taille:id}', [TailleController::class, 'show']);
+Route::post('/tailles', [TailleController::class, 'store']);
+Route::put('/tailles/{taille:id}', [TailleController::class, 'update']);
+Route::delete('/tailles/{taille:id}', [TailleController::class, 'destroy']);
 
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{product:id}', [ProductController::class, 'show']);
